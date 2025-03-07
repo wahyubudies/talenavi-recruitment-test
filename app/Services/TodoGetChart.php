@@ -12,11 +12,23 @@ class TodoGetChart
     {
         switch ($type) {
             case 'status':
-                return $this->getStatusSummary();
+                return $this->successResponse(
+                    $this->getStatusSummary(),
+                    'Success',
+                    200
+                );
             case 'priority':
-                return $this->getPrioritySummary();
+                return $this->successResponse(
+                    $this->getPrioritySummary(),
+                    'Success',
+                    200
+                );
             case 'assignee':
-                return $this->getAssigneeSummary();
+                return $this->successResponse(
+                    $this->getAssigneeSummary(),
+                    'Success',
+                    200
+                );
             default:
                 return $this->errorResponse('Error!', 'Invalid type', 400);
         }

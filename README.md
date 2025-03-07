@@ -1,66 +1,107 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Todo API Documentation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Import Postman Collection
 
-## About Laravel
+Untuk mempermudah pengujian API, kamu bisa mengimpor file koleksi Postman:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Buka aplikasi Postman.
+2. Klik tombol **Import** di pojok kiri atas.
+3. Pilih file JSON koleksi Postman yang disediakan.
+4. Klik **Confirm** untuk menyelesaikan impor.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Sekarang kamu bisa langsung mengakses semua endpoint yang tersedia!
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 2. Cara Penggunaan: Store Todo
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Endpoint:**
+```
+POST /api/todos/create
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Request Body:**
+```json
+{
+    "title": "Nama Tugas",
+    "assignee": "Nama Assignee",
+    "due_date": "2025-03-10",
+    "time_tracked": 5,
+    "status": "pending",
+    "priority": "high"
+}
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Response:**
+```json
+{
+    "code": 201,
+    "message": "Todo berhasil ditambahkan",
+    "data": {
+        "title": "Nama Tugas",
+        "assignee": "Nama Assignee",
+        "due_date": "2025-03-10",
+        "time_tracked": 5,
+        "status": "pending",
+        "priority": "high"
+    },
+    "error": null,
+    "timestamp": "2025-03-07T18:54:25.409752Z"
+}
+```
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 3. Cara Penggunaan: Export Excel
 
-### Premium Partners
+**Endpoint:**
+```
+GET /api/todos/export
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**Response:**
+- File Excel akan otomatis terunduh.
+- Pastikan browser kamu mengizinkan unduhan file.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 4. Cara Penggunaan: Get Chart Data
 
-## Code of Conduct
+**Endpoint:**
+```
+GET /api/todos/chart?type={type}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Parameter:**
+- **type**: Jenis data chart yang ingin diambil.
+    - `status`: untuk ringkasan status todo.
+    - `priority`: untuk ringkasan prioritas todo.
+    - `assignee`: untuk ringkasan assignee todo.
 
-## Security Vulnerabilities
+**Contoh Request:**
+```
+GET /api/todos/chart?type=status
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Response:**
+```json
+{
+    "code": 200,
+    "message": "Success",
+    "data": {
+        "status_summary": {
+            "completed": 3,
+            "in_progress": 2,
+            "open": 10,
+            "pending": 2
+        }
+    },
+    "error": null,
+    "timestamp": "2025-03-07T18:54:25.409752Z"
+}
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Selamat mencoba! 🚀
+
