@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "3975429d-be5a-40b3-af1c-9b456437d303",
+		"name": "Talenavi Recruitment Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27996874"
+	},
+	"item": [
+		{
+			"name": "Create Todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Psi Kopi\",\n    \"assignee\": \"Son Goku\",\n    \"due_date\": \"2025-03-09\",\n    \"time_tracked\": 2,\n    \"status\": \"open\",\n    \"priority\": \"high\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/todos/create",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todos",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Export Todo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/export?title=Learn&assignee=John,Doe&start=2025-03-01&end=2025-03-10&min=1&max=10&status=pending,in_progress&priority=low,high",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todos",
+						"export"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Learn"
+						},
+						{
+							"key": "assignee",
+							"value": "John,Doe"
+						},
+						{
+							"key": "start",
+							"value": "2025-03-01"
+						},
+						{
+							"key": "end",
+							"value": "2025-03-10"
+						},
+						{
+							"key": "min",
+							"value": "1"
+						},
+						{
+							"key": "max",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "pending,in_progress"
+						},
+						{
+							"key": "priority",
+							"value": "low,high"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Chart Todo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/todos/chart?type=assignee",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"todos",
+						"chart"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "assignee"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
